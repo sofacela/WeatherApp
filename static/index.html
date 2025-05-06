@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+        <h1 class="text-2xl font-bold text-center mb-4">Weather App</h1>
+        <div class="space-y-4">
+            <div>
+                <label for="country" class="block text-sm font-medium text-gray-700">Country</label>
+                <select id="country" onchange="updateCities()" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    <option value="">Select Country</option>
+                    <option value="Poland">Poland</option>
+                    <option value="Germany">Germany</option>
+                    <option value="Spain">Spain</option>
+                </select>
+            </div>
+            <div>
+                <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+                <select id="city" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+                    <option value="">Select City</option>
+                </select>
+            </div>
+            <button onclick="getWeather()" class="w-full bg-blue-600 text-white p-2 rounded-md hover:bg-blue-700">Get Weather</button>
+        </div>
+        <div id="weather" class="mt-6"></div>
+    </div>
+
+    <script>
+        const locations = {
+            "Poland": ["Warsaw", "Krakow", "Gdansk"],
+            "Germany": ["Berlin", "Munich", "Hamburg"],
+            "Spain": ["Madrid", "Barcelona", "Valencia"]
+        };
+
+        function updateCities() {
+            const country = document.getElementById("country").value;
+            const citySelect = document.getElementById("city");
+            citySelect.innerHTML = '<option value="">Select City</option>';
+            
+            if (country && locations[country]) {
+                locations[country].forEach(city => {
+                    const option = document.createElement("option");
+                    option.value = city;
+                    option.text = city;
+                    citySelect.appendChild(option);
+                });
+            } else {
+                citySelect.disabled = true;
+            }
+            citySelect.disabled = !country;
+        }
+
+        async function getWeather() {
+            const country = document.getElementById("country").value;
+            const city = document.getElementById("city").value;
+            const weatherDiv = document.getElementById("weather");
+
+            if (!country || !city) {
+                weatherDiv.innerHTML = '<p class="text-red-500">Please select both a country and a city.</p>';
+                return;
+            }
+
+            if (!locations[country].includes(city)) {
+                weatherDiv.innerHTML = '<p class="text-red-500">Invalid city for the selected country.</p>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`/weather/${country}/${city}`);
+                const data = await response.json();
+                if (response.ok) {
+                    weatherDiv.innerHTML = `
+                        <h2 class="text-xl font-semibold">${data.city}, ${data.country}</h2>
+                        <p class="text-gray-700">Temperature: ${data.temperature}°C</p>
+                        <p class="text-gray-700">Description: ${data.description}</p>
+                        <p class="text-gray-700">Humidity: ${data.humidity}%</p>
+                        <p class="text-gray-700">Wind Speed: ${data.wind_speed} m/s</p>
+                    `;
+                } else {
+                    weatherDiv.innerHTML = `<p class="text-red-500">Error: ${data.detail}</p>`;
+                }
+            } catch (error) {
+                weatherDiv.innerHTML = '<p class="text-red-500">Error fetching weather data.</p>';
+            }
+        }
+    </script>
+</body>
+</html>
