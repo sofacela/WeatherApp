@@ -25,4 +25,7 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
   CMD python /app/healthcheck.py
 
+RUN --mount=type=secret,id=openweather_api_key \
+    echo "SECRET's USED"
+
 CMD ["python", "app.py"]
