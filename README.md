@@ -40,16 +40,15 @@ Taki sposób tagowania jest często stosowany w praktyce, ponieważ:
  - multiarch pozwala jednym obrazem obsłużyć wiele systemów.
 
 Dowiedziałam się o tym z poradnika:
-    https://labex.io/tutorials/docker-how-to-tag-docker-images-418068
+ - https://labex.io/tutorials/docker-how-to-tag-docker-images-418068
 
 Do przyspieszenia budowania obrazów użyłam cache typu registry — czyli dane z budowania (np. zależności) są zapisywane w moim repozytorium na DockerHub (sofiialaba/cache:weather-app).
 Dzięki temu kolejne budowania są dużo szybsze i nie muszą pobierać wszystkiego od nowa.
 
 Użyłam trybu max, bo on zapisuje najwięcej danych i jest najdokładniejszy. Taką rekomendację znalazłam tutaj:
 
-    https://docs.docker.com/build/cache/backends/registry/
-
-    https://docs.docker.com/build/cache/optimize/
+ - https://docs.docker.com/build/cache/backends/registry/
+ - https://docs.docker.com/build/cache/optimize/
 
 Wymagane sekrety (GitHub Secrets)
 
