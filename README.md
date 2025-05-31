@@ -25,6 +25,32 @@ Obrazy są tagowane w następujący sposób:
 Cache znajduje się pod adresem:  
 `sofiialaba/cache:weather-app` (na DockerHub)
 
+Sposób tagowania i cache’owania (z uzasadnieniem)
+
+W tym projekcie obraz Dockera został otagowany na dwa sposoby:
+
+ - latest — to standardowy tag, który oznacza najnowszą wersję obrazu. Dzięki temu łatwo go pobrać bez podawania konkretnej wersji.
+
+ - multiarch — ten tag informuje, że obraz działa na dwóch architekturach: amd64 (np. komputery) i arm64 (np. Raspberry Pi, Mac z M1/M2).
+
+Taki sposób tagowania jest często stosowany w praktyce, ponieważ:
+
+ - latest ułatwia testowanie i rozwój,
+
+ - multiarch pozwala jednym obrazem obsłużyć wiele systemów.
+
+Dowiedziałam się o tym z poradnika:
+    https://labex.io/tutorials/docker-how-to-tag-docker-images-418068
+
+Do przyspieszenia budowania obrazów użyłam cache typu registry — czyli dane z budowania (np. zależności) są zapisywane w moim repozytorium na DockerHub (sofiialaba/cache:weather-app).
+Dzięki temu kolejne budowania są dużo szybsze i nie muszą pobierać wszystkiego od nowa.
+
+Użyłam trybu max, bo on zapisuje najwięcej danych i jest najdokładniejszy. Taką rekomendację znalazłam tutaj:
+
+    https://docs.docker.com/build/cache/backends/registry/
+
+    https://docs.docker.com/build/cache/optimize/
+
 Wymagane sekrety (GitHub Secrets)
 
 W repozytorium GitHub dodano w zakładce `Settings > Secrets and variables > Actions` następujące sekrety:

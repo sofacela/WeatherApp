@@ -3,6 +3,12 @@ name: Build & Push Multiarch Docker Image
 on:
   push:
     branches: [ main ]
+    paths:
+      - '**.py'
+      - 'Dockerfile'
+      - 'requirements.txt'
+      - 'static/**'
+      - '.github/workflows/**'
 
 jobs:
   build-and-push:
