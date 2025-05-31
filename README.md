@@ -67,11 +67,11 @@ W repozytorium znajdują się także:
 
 - screenshots/zad_2/ — zrzuty ekranu pokazujące:
 
-       wykrycie podatności typu high vulnerability w bibliotece starlette,
+    wykrycie podatności typu high vulnerability w bibliotece starlette,
 
-       aktualizację zależności do wersji wolnej od zagrożeń,
+    aktualizację zależności do wersji wolnej od zagrożeń,
 
-       poprawne uruchomienie kontenera z obrazu pobranego z GHCR (ghcr.io).
+    poprawne uruchomienie kontenera z obrazu pobranego z GHCR (ghcr.io).
 
 - zadanie1.md — dokumentacja Zadania 1 (FastAPI + Docker + Healthcheck).
 
