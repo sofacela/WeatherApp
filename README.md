@@ -59,21 +59,20 @@ Wykorzystano narzędzie Trivy do skanowania obrazu Dockera. Jeśli obraz zawiera
 
 Status
 
- - Pipeline działa poprawnie (przetestowany w GitHub Actions)
- - Obraz opublikowany publicznie w GHCR
- - Zadanie zrealizowane zgodnie z wymaganiami
-
+- Pipeline działa poprawnie (przetestowany w GitHub Actions)
+- Obraz opublikowany publicznie w GHCR
+- Zadanie zrealizowane zgodnie z wymaganiami
 
 W repozytorium znajdują się także:
 
-    screenshots/zad_2/ — zrzuty ekranu pokazujące:
+- screenshots/zad_2/ — zrzuty ekranu pokazujące:
 
-            wykrycie podatności typu high vulnerability w bibliotece starlette,
+       wykrycie podatności typu high vulnerability w bibliotece starlette,
 
-            aktualizację zależności do wersji wolnej od zagrożeń,
+       aktualizację zależności do wersji wolnej od zagrożeń,
 
-            poprawne uruchomienie kontenera z obrazu pobranego z GHCR (ghcr.io).
+       poprawne uruchomienie kontenera z obrazu pobranego z GHCR (ghcr.io).
 
-    zadanie1.md — dokumentacja Zadania 1 (FastAPI + Docker + Healthcheck).
+- zadanie1.md — dokumentacja Zadania 1 (FastAPI + Docker + Healthcheck).
 
-    zadanie_dodatkowe.md — opis realizacji zadania dodatkowego numer 3 Zadania 1.
+- zadanie_dodatkowe.md — opis realizacji zadania dodatkowego numer 3 Zadania 1.
